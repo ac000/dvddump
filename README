@@ -1,0 +1,24 @@
+Overview
+========
+
+dvddump is a simple wrapper around dd_rescue to enable the dumping of DVD's.
+
+It uses libdvdread to first open the DVD and thus take care of the CSS stuff.
+This allows dd_rescue to then access the DVD without error.
+
+
+Usage
+=====
+
+    $ dvddump <dvd-device> <outfile>
+
+e.g
+
+    $ dvddump /dev/sr0 dvd.iso
+
+
+License
+=======
+
+This is licensed under the GNU General Public License V2.
+See COPYING
