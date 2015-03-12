@@ -37,7 +37,13 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	dvd = DVDOpen(argv[1]);
+	do {
+		dvd = DVDOpen(argv[1]);
+		if (!dvd) {
+			printf("Trying to open device...\n");
+			sleep(1);
+		}
+	} while (!dvd);
 
 	memset(&sa, 0, sizeof(sa));
 	sigemptyset(&sa.sa_mask);
