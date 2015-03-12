@@ -51,9 +51,16 @@ int main(int argc, char *argv[])
 	sigaction(SIGCHLD, &sa, NULL);
 
 	pid = fork();
-	if (pid == 0)
-		execlp("dd_rescue", "dd_rescue", argv[1], argv[2],
+	if (pid == 0) {
+		int err;
+
+		err = execlp("dd_rescue", "dd_rescue", argv[1], argv[2],
 				(char *)NULL);
+		if (err) {
+			perror("execlp: dd_rescue");
+			exit(EXIT_FAILURE);
+		}
+	}
 	pause();
 
 	DVDClose(dvd);
