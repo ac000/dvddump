@@ -19,7 +19,7 @@
 
 #include <dvdread/dvd_reader.h>
 
-static void reaper(int signo)
+static void reaper(int signo __attribute__ ((unused)))
 {
 	int status;
 
