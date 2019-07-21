@@ -1,7 +1,7 @@
 /*
  * dvddump.c - A simple wrapper around dd_rescue.
  *
- * Copyright (C) 2015		Andrew Clayton <andrew@digital-domain.net>
+ * Copyright (C) 2015, 2019	Andrew Clayton <andrew@digital-domain.net>
  *
  * Released under the GNU General Public License version 2
  * See COPYING
@@ -54,8 +54,9 @@ int main(int argc, char *argv[])
 	if (pid == 0) {
 		int err;
 
-		err = execlp("dd_rescue", "dd_rescue", argv[1], argv[2],
-				(char *)NULL);
+		err = execlp("ddrescue", "ddrescue", "-B", "-d", "-r", "1",
+			     "-n", "-N", "-b", "2048", argv[1], argv[2],
+			     (char *)NULL);
 		if (err) {
 			perror("execlp: dd_rescue");
 			exit(EXIT_FAILURE);
